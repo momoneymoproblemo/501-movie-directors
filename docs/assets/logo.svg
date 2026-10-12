@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="300" viewBox="0 0 500 300">
+<rect width="500" height="300" fill="#090b0c"/>
+<rect x="22" y="22" width="118" height="256" fill="#f6cb08"/>
+<g transform="translate(93 151) rotate(-90)" font-family="Arial,Helvetica,sans-serif" font-size="118" font-weight="900" text-anchor="middle" fill="#050506"><text x="0" y="39">501</text></g>
+<text x="155" y="145" font-family="Impact,'Arial Black',sans-serif" font-size="101" letter-spacing="-3" fill="#f6cb08">MOVIE</text>
+<text x="155" y="210" font-family="Impact,'Arial Black',sans-serif" font-size="56" fill="white">DIRECTORS</text>
+<text x="158" y="240" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" fill="white">STREMIO ADD-ON</text>
+</svg>
