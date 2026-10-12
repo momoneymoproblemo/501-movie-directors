@@ -1,0 +1,49 @@
+name: Rebuild and publish 501 directors
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'build.js'
+      - 'data/directors.txt'
+      - 'docs/index.html'
+      - 'docs/assets/**'
+      - '.github/workflows/update.yml'
+  schedule:
+    - cron: '23 18 * * 0'  # Sunday UTC / early Monday morning in Melbourne
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-501-directors
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate directors and filmographies from IMDb
+        run: node build.js
+      - name: Upload static website and Stremio catalogues
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+  deploy:
+    needs: rebuild
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
